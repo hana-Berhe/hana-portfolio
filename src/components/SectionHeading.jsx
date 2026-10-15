@@ -1,4 +1,3 @@
-// Centred two-tone heading used by every section: "About" + "Me".
 export default function SectionHeading({ id, title, highlight, subtitle }) {
   return (
     <div className="mb-14 flex flex-col items-center gap-3 text-center">

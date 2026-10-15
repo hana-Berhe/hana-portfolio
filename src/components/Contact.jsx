@@ -10,7 +10,11 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="border-t border-line-soft bg-ink-2">
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="border-t border-line-soft bg-ink-2"
+    >
       <div className="mx-auto flex max-w-[1180px] flex-col items-center gap-10 px-5 pb-24 pt-20 text-center sm:px-8 md:pt-28">
         <div className="flex flex-col items-center gap-3.5">
           <h2
@@ -20,17 +24,18 @@ export default function Contact() {
             Let's build something <span className="text-violet">together</span>.
           </h2>
           <p className="max-w-[560px] text-lg text-muted">
-            I'm looking for a junior full-stack role or internship where I can contribute, learn
-            from experienced engineers, and grow.
+            I'm looking for a junior full-stack role or internship where I can
+            contribute, learn from experienced engineers, and grow.
           </p>
         </div>
 
-        {/* Plain links instead of a form: no backend or form service needed */}
         <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((c) => (
             <a key={c.label} href={c.href} className={cardBase}>
               <span className="font-mono text-xs text-subtle">{c.label}</span>
-              <span className="break-words font-semibold text-white">{c.value}</span>
+              <span className="break-words font-semibold text-white">
+                {c.value}
+              </span>
             </a>
           ))}
           <a

@@ -8,7 +8,6 @@ const pillTone = {
 
 function Screenshot({ project, className = "" }) {
   if (!project.image) {
-    // Honest placeholder until a real screenshot is added in data/projects.js
     return (
       <div
         className={`flex aspect-[16/10] flex-col items-center justify-center gap-2 rounded-[14px] border border-[#3a3d5a] bg-[#2e3150] text-subtle ${className}`}
@@ -46,7 +45,10 @@ export default function ProjectCard({ project }) {
         featured ? "p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-11" : "p-6"
       }`}
     >
-      <Screenshot project={project} className={featured ? "lg:w-[54%] lg:shrink-0" : ""} />
+      <Screenshot
+        project={project}
+        className={featured ? "lg:w-[54%] lg:shrink-0" : ""}
+      />
 
       <div className="flex min-w-0 flex-col gap-4">
         <div className="flex flex-wrap gap-2">
@@ -67,7 +69,10 @@ export default function ProjectCard({ project }) {
 
         <ul className="flex flex-wrap gap-2" aria-label="Key features">
           {project.features.map((feature) => (
-            <li key={feature} className="rounded-full bg-text px-3 py-1.5 text-[13px] font-semibold text-ink">
+            <li
+              key={feature}
+              className="rounded-full bg-text px-3 py-1.5 text-[13px] font-semibold text-ink"
+            >
               {feature}
             </li>
           ))}
@@ -79,7 +84,9 @@ export default function ProjectCard({ project }) {
             <dd className="text-muted">{project.role}</dd>
           </div>
           <div className="flex gap-3">
-            <dt className="w-[52px] shrink-0 font-semibold text-white">Stack</dt>
+            <dt className="w-[52px] shrink-0 font-semibold text-white">
+              Stack
+            </dt>
             <dd className="text-muted">{project.stack.join(" · ")}</dd>
           </div>
         </dl>

@@ -14,7 +14,6 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // Close the mobile menu with the Escape key.
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && setOpen(false);
@@ -32,14 +31,24 @@ export default function Navbar() {
           href="#top"
           className="flex items-center gap-3 font-display text-[17px] font-semibold text-white"
         >
-          <img src={logo} alt="" width="30" height="39" className="h-[39px] w-[30px]" />
+          <img
+            src={logo}
+            alt=""
+            width="30"
+            height="39"
+            className="h-[39px] w-[30px]"
+          />
           {profile.name}
         </a>
 
         {/* Desktop links: always visible, no hunting behind a menu icon */}
         <div className="hidden items-center gap-8 text-[15px] font-medium md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-[#c3c4dc] transition-colors hover:text-white">
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-[#c3c4dc] transition-colors hover:text-white"
+            >
               {link.label}
             </a>
           ))}
@@ -65,7 +74,10 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-line-soft px-5 pb-6 md:hidden">
+        <div
+          id="mobile-menu"
+          className="border-t border-line-soft px-5 pb-6 md:hidden"
+        >
           <ul className="flex flex-col">
             {links.map((link) => (
               <li key={link.href}>

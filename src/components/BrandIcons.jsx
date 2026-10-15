@@ -1,5 +1,3 @@
-// Lucide has dropped brand logos, so GitHub and LinkedIn are drawn here
-// in the same stroke style as the Lucide icons used elsewhere.
 const base = {
   width: 20,
   height: 20,
