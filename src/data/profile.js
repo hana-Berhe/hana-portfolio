@@ -7,6 +7,5 @@ export const profile = {
   email: "hanagebc@gmail.com",
   github: "https://github.com/hana-Berhe",
   linkedin: "https://www.linkedin.com/in/hana-berhe-dev-winnipeg/",
-  // Put your résumé PDF at public/resume/Hana-Berhe-Resume.pdf
   resume: "/resume/Hana-Berhe-Resume.pdf",
 };
