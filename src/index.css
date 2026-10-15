@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/*
+  Design tokens. Tailwind v4 turns each of these into utility classes,
+  e.g. --color-ink -> bg-ink / text-ink, --font-display -> font-display.
+  Change a value here and it updates everywhere.
+*/
+@theme {
+  --color-ink: #1b1d30; /* page background */
+  --color-ink-2: #202337; /* alternate section background */
+  --color-card: #272a42; /* card surface */
+  --color-raised: #2a2d49; /* small floating surfaces */
+  --color-line: #353250; /* card borders */
+  --color-line-soft: #2b2e46; /* section dividers */
+  --color-line-strong: #45486b; /* outline buttons */
+  --color-text: #eeeef7; /* main text */
+  --color-muted: #a5a3b3; /* body text */
+  --color-subtle: #8d8eae; /* captions */
+  --color-violet: #716fff; /* brand accent (headings, outlines) */
+  --color-violet-soft: #8f8dff; /* links on dark */
+  --color-violet-tint: #a9a7ff; /* text on violet pills */
+  --color-violet-pill: #302e6e; /* pill background */
+  --color-action: #5f5cf0; /* button fill: passes contrast with white text */
+  --color-action-edge: #4744c9; /* 3D edge under purple buttons */
+  --color-pink: #ff6f91;
+  --color-pink-soft: #ff8aaa;
+  --color-pink-pill: #432436;
+  --color-ok: #4ade9b;
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* keeps section titles from hiding under the sticky navbar */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ink font-sans text-text antialiased;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  ::selection {
+    @apply bg-violet text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-pink);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  /* Raised card: a solid darker edge underneath plus a soft violet glow. */
+  .card-3d {
+    @apply rounded-[20px] border border-line bg-card;
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.35s;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.08),
+      0 6px 0 #121424,
+      0 22px 40px -18px rgb(113 111 255 / 0.45);
+  }
+
+  /* Only project cards tilt, so the motion draws attention to them. */
+  .card-tilt:hover {
+    transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) translateY(-6px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.1),
+      0 10px 0 #121424,
+      0 34px 56px -18px rgb(113 111 255 / 0.6);
+  }
+
+  /* Clickable cards lift slightly so they read as links. */
+  .card-lift:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Purple button that presses down like a key. */
+  .btn-3d {
+    @apply bg-action text-white;
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.25),
+      0 4px 0 var(--color-action-edge),
+      0 12px 24px -10px rgb(113 111 255 / 0.7);
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.25),
+      0 6px 0 var(--color-action-edge),
+      0 16px 28px -10px rgb(113 111 255 / 0.8);
+  }
+
+  .btn-3d:active {
+    transform: translateY(3px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.2),
+      0 1px 0 var(--color-action-edge);
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 font-mono text-xs uppercase tracking-[0.06em];
+  }
+}
+
+/* People who turn off animations in their OS settings get none. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card-3d,
+  .card-tilt:hover,
+  .card-lift:hover,
+  .btn-3d,
+  .btn-3d:hover,
+  .btn-3d:active {
+    transition: none;
+    transform: none;
+  }
+}
